@@ -6,31 +6,29 @@ import TableHead from "./components/table/TableHead";
 
 class App extends Component {
   state = {
-    livros: [
-      {
-        id: "978-3-16-148410-0",
-        titulo: "O Mistério da Casa Azul",
-        autor: "Carlos Almeida",
-      },
-      {
-        id: "978-0-14-312779-6",
-        titulo: "Segredos do Tempo",
-        autor: "Mariana Souza",
-      },
-      {
-        id: "978-1-86197-876-9",
-        titulo: "A Jornada dos Sonhos",
-        autor: "Fernando Lima",
-      }
-    ]
+    livros: [],
+    erroMensagem: ''
+  }
+  
+  componentDidMount() { //método do ciclo que é chamado após o componente ser montado e renderizado
+    fetch("/api/livros.json") //fetch(url) retorna uma promise
+    .then(response => response.json()) //recebe os dados
+    .then(livros => this.setState({ livros })) //popula o objeto state
+    .catch((erro) => this.setState({ erroMensagem: 'Erro ao buscar dados.' }))
+    .finally(function() {
+      console.log("Sempre retorna.");
+    })
   }
 
   render() {
     return (
       <table className="tabela">
         <TableHead />
-        <TableBody livros={ this.state.livros }/>
-        <TableFoot />
+        <TableBody livros = { this.state.livros }/>
+        <TableFoot 
+          qtdLivros = { this.state.livros.length } 
+          erroMensagem = { this.state.erroMensagem} 
+        />
       </table>
     );
   }
