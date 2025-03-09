@@ -1,9 +1,14 @@
+import TableBody from "./components/table/TableBody";
+import TableFoot from "./components/table/TableFoot";
+import TableHead from "./components/table/TableHead";
 
 function App() {
   return (
-    <div>
-      <h1>Tabela de livros</h1>
-    </div>
+    <table className="tabela">
+      <TableHead />
+      <TableBody />
+      <TableFoot />
+    </table>
   );
 }
 
