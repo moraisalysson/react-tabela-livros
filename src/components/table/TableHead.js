@@ -7,14 +7,27 @@ const TableHead = (props) => (
             <th colSpan="4">Tabela de Livros</th>
         </tr>
         <tr>
-            <th>ISBN</th>
+            <th>ISBN
+                <SetasOrdenacao
+                    setasOrdenarCrescente={props.ordenarCrescente}
+                    setasOrdenarDecrescente={props.ordenarDecrescente}
+                    cabecalho="isbn"
+                />
+            </th>
             <th>Título
                 <SetasOrdenacao
                     setasOrdenarCrescente={props.ordenarCrescente}
                     setasOrdenarDecrescente={props.ordenarDecrescente}
+                    cabecalho="titulo"
                 />
             </th>
-            <th>Autor</th>
+            <th>Autor
+                <SetasOrdenacao
+                    setasOrdenarCrescente={props.ordenarCrescente}
+                    setasOrdenarDecrescente={props.ordenarDecrescente}
+                    cabecalho="autor"
+                />
+            </th>
             <th></th>
         </tr>
     </thead>

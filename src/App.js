@@ -20,17 +20,55 @@ class App extends Component {
       })
   }
 
-  handleOrdenarCrescente = (titulo) => {
-    const livros = this.state.livros.sort((a, b) =>
-      a.titulo < b.titulo ? -1 : 0); //ordem crescente
-    this.setState({ livros });
+  handleOrdenarCrescente = (cabecalho) => {
+    switch (cabecalho) {
+      case "titulo":
+        const livrosTitulo = this.state.livros.sort((a, b) =>
+          a.titulo < b.titulo ? -1 : 0); //ordem crescente
+        this.setState({ livrosTitulo });
+        break;
+
+      case "isbn":
+        const livrosIsbn = this.state.livros.sort((a, b) =>
+          a.id < b.id ? -1 : 0); //ordem crescente
+        this.setState({ livrosIsbn });
+        break;
+
+      case "autor":
+        const livrosAutor = this.state.livros.sort((a, b) =>
+          a.autor < b.autor ? -1 : 0); //ordem crescente
+        this.setState({ livrosAutor });
+        break;
+      default:
+        break;
+    }
   }
 
-  handleOrdenarDecrescente = (titulo) => {
-    const livros = this.state.livros.sort((a, b) =>
-      a.titulo < b.titulo ? -1 : 0); //ordem crescente
-    livros.reverse();
-    this.setState({ livros });
+  handleOrdenarDecrescente = (cabecalho) => {
+    switch (cabecalho) {
+      case "titulo":
+        const livrosTitulo = this.state.livros.sort((a, b) =>
+          a.titulo < b.titulo ? -1 : 0); //ordem crescente
+        livrosTitulo.reverse();
+        this.setState({ livrosTitulo });
+        break;
+
+      case "isbn":
+        const livrosIsbn = this.state.livros.sort((a, b) =>
+          a.id < b.id ? -1 : 0); //ordem crescente
+        livrosIsbn.reverse();
+        this.setState({ livrosIsbn });
+        break;
+
+      case "autor":
+        const livrosAutor = this.state.livros.sort((a, b) =>
+          a.autor < b.autor ? -1 : 0); //ordem crescente
+        livrosAutor.reverse();
+        this.setState({ livrosAutor });
+        break;
+      default:
+        break;
+    }
   }
 
   handleRemoverLinha = (id) => {
