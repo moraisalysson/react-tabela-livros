@@ -2,6 +2,19 @@ body {
     font: 16px sans-serif;
     margin: 0;
   }
+
+  .container-setinhas {
+    display: inline-block;
+    width: 20px;
+    height: 40px;
+    margin-left: 10px;
+    vertical-align: middle;
+  }
+
+  .container-setinhas > div {
+    cursor: pointer;
+  }
+
   .tabela {
     border-collapse: collapse;
     border: 1px solid #ccc;

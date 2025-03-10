@@ -20,7 +20,20 @@ class App extends Component {
       })
   }
 
-  handleRemoverLinha = (id) =>{ 
+  handleOrdenarCrescente = (titulo) => {
+    const livros = this.state.livros.sort((a, b) =>
+      a.titulo < b.titulo ? -1 : 0); //ordem crescente
+    this.setState({ livros });
+  }
+
+  handleOrdenarDecrescente = (titulo) => {
+    const livros = this.state.livros.sort((a, b) =>
+      a.titulo < b.titulo ? -1 : 0); //ordem crescente
+    livros.reverse();
+    this.setState({ livros });
+  }
+
+  handleRemoverLinha = (id) => {
     const livros = this.state.livros.filter(l => l.id !== id);
     this.setState({ livros })
   }
@@ -28,10 +41,14 @@ class App extends Component {
   render() {
     return (
       <table className="tabela">
-        <TableHead />
+        <TableHead
+          ordenarCrescente={this.handleOrdenarCrescente}
+          ordenarDecrescente={this.handleOrdenarDecrescente}
+        />
         <TableBody
           livros={this.state.livros}
-          removerLinha={this.handleRemoverLinha} />
+          removerLinha={this.handleRemoverLinha}
+        />
         <TableFoot
           qtdLivros={this.state.livros.length}
           erroMensagem={this.state.erroMensagem}
