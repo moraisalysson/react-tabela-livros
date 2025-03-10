@@ -9,25 +9,32 @@ class App extends Component {
     livros: [],
     erroMensagem: ''
   }
-  
+
   componentDidMount() { //método do ciclo que é chamado após o componente ser montado e renderizado
     fetch("/api/livros.json") //fetch(url) retorna uma promise
-    .then(response => response.json()) //recebe os dados
-    .then(livros => this.setState({ livros })) //popula o objeto state
-    .catch((erro) => this.setState({ erroMensagem: 'Erro ao buscar dados.' }))
-    .finally(function() {
-      console.log("Sempre retorna.");
-    })
+      .then(response => response.json()) //recebe os dados
+      .then(livros => this.setState({ livros })) //popula o objeto state
+      .catch((erro) => this.setState({ erroMensagem: 'Erro ao buscar dados.' }))
+      .finally(function () {
+        console.log("Sempre retorna.");
+      })
+  }
+
+  handleRemoverLinha = (id) =>{ 
+    const livros = this.state.livros.filter(l => l.id !== id);
+    this.setState({ livros })
   }
 
   render() {
     return (
       <table className="tabela">
         <TableHead />
-        <TableBody livros = { this.state.livros }/>
-        <TableFoot 
-          qtdLivros = { this.state.livros.length } 
-          erroMensagem = { this.state.erroMensagem} 
+        <TableBody
+          livros={this.state.livros}
+          removerLinha={this.handleRemoverLinha} />
+        <TableFoot
+          qtdLivros={this.state.livros.length}
+          erroMensagem={this.state.erroMensagem}
         />
       </table>
     );
