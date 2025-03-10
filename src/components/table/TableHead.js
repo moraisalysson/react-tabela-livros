@@ -1,4 +1,5 @@
 import React from "react";
+import SetasOrdenacao from "./SetasOrdenacao";
 
 const TableHead = (props) => (
     <thead>
@@ -8,10 +9,10 @@ const TableHead = (props) => (
         <tr>
             <th>ISBN</th>
             <th>Título
-                <div className="container-setinhas">
-                    <div onClick={ () => props.ordenarCrescente() }>&#129093;</div>
-                    <div onClick={ () => props.ordenarDecrescente() }>&#129095;</div>
-                </div>
+                <SetasOrdenacao
+                    setasOrdenarCrescente={props.ordenarCrescente}
+                    setasOrdenarDecrescente={props.ordenarDecrescente}
+                />
             </th>
             <th>Autor</th>
             <th></th>
